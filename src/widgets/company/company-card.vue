@@ -1,41 +1,44 @@
 <script setup lang="ts">
 import { useCityStore } from '@/entities/city/model';
 import { useCompanyStore } from '@/entities/company/model';
+import 'moment/dist/locale/ru';
+import momentTZ from 'moment-timezone';
 
 const companyStore = useCompanyStore();
 const cityStore = useCityStore();
 
-const color: {[p: string]: string} = {
+const color: { [p: string]: string; } = {
   low: 'red',
   medium: 'primary',
   high: 'green',
   unknown: 'default',
-}
+};
 
 const computeColor = (val: number): string => {
   if (val < 100) return color['low'];
   if (val > 130) return color['high'];
-  if (val >= 100 ) return color['medium'];
+  if (val >= 100) return color['medium'];
   return color['unknown'];
-}
+};
+
+const getCurrentDate = (): string => {
+  return momentTZ(companyStore.today)
+    .tz('asia/almaty')
+    .locale(['ru'])
+    .format('DD MMMM YYYY г., HH:mm:ss');
+};
 </script>
 
 <template>
-  
   <v-card class="w-100 pa-2" style="max-width: 800px;" :loading="companyStore.fetching">
     <template v-if="companyStore.company && !companyStore.fetching && cityStore.selected">
-      <v-card-title
-        class="text-primary text-wrap my-sm-3 text-sm-h4 text-xs-h6 font-weight-black"
-      >
+      <v-card-title class="text-primary text-wrap my-sm-3 text-sm-h4 text-xs-h6 font-weight-black">
         {{ companyStore.company.name }}
       </v-card-title>
-      
-      <v-card-item
-        :subtitle="`Текущая дата: ${companyStore.today.toLocaleString()}`"
-        :title="cityStore.selected?.name"
-      >
+
+      <v-card-item :subtitle="getCurrentDate()" :title="cityStore.selected?.name">
       </v-card-item>
-      
+
       <v-divider></v-divider>
 
       <v-list lines="two">
@@ -46,7 +49,7 @@ const computeColor = (val: number): string => {
             </v-chip>
           </template>
         </v-list-item>
-        
+
         <v-list-item title="Товар в наличии:">
           <template v-slot:append>
             <v-chip :color="computeColor(companyStore.getStatusProp('availableProducts'))">
@@ -54,7 +57,7 @@ const computeColor = (val: number): string => {
             </v-chip>
           </template>
         </v-list-item>
-        
+
         <v-list-item title="Товар без наличии:">
           <template v-slot:append>
             <v-chip :color="computeColor(companyStore.getStatusProp('nonAvailableProducts'))">
