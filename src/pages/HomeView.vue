@@ -11,7 +11,7 @@ const title = 'Кабинет компании';
     <template v-slot:header>
       <AppHeader :title="title" />
     </template>
-    
+
     <CompanyCard />
   </CabinetLayout>
 </template>

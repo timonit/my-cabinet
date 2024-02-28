@@ -7,7 +7,7 @@ const cityStore = useCityStore();
 const selectCity = (items: any[]) => {
   cityStore.select(items[0]);
   setCurrentCompany(items[0]);
-}
+};
 </script>
 
 <template>

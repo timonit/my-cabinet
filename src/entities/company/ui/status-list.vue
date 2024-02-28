@@ -15,24 +15,22 @@ const computeLevel = (val: number): Level => {
 
 <template>
   <v-list lines="two">
-    
     <StatusListItem
       label="Количество товаров:"
       :value="companyStore.getStatusProp('totalProducts')"
       :level="computeLevel(companyStore.getStatusProp('totalProducts'))"
     />
-    
+
     <StatusListItem
       label="Товар в наличии:"
       :value="companyStore.getStatusProp('availableProducts')"
       :level="computeLevel(companyStore.getStatusProp('availableProducts'))"
     />
-    
+
     <StatusListItem
       label="Товар без наличии:"
       :value="companyStore.getStatusProp('nonAvailableProducts')"
       :level="computeLevel(companyStore.getStatusProp('nonAvailableProducts'))"
     />
-
   </v-list>
 </template>

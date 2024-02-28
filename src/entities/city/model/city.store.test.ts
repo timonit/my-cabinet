@@ -14,8 +14,7 @@ describe('When select city', () => {
       }
     ]
   };
-  
-  
+
   beforeEach(() => {
     fetchMock.restore();
     fetchMock.get(CITIES_URL, { status: 200, body });
@@ -37,8 +36,7 @@ describe('When select city', () => {
 
     try {
       cityStore.select(body.cities[0].code);
-
-    } catch(err: any) {
+    } catch (err: any) {
       expect(err).instanceOf(CityIsNotExistError);
     }
   });
