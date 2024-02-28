@@ -21,8 +21,9 @@ const computeColor = (val: number): string => {
 </script>
 
 <template>
+  
   <v-card class="w-100 pa-2" style="max-width: 800px;" :loading="companyStore.fetching">
-    <template v-if="companyStore.company && !companyStore.fetching">
+    <template v-if="companyStore.company && !companyStore.fetching && cityStore.selected">
       <v-card-title
         class="text-primary text-wrap my-sm-3 text-sm-h4 text-xs-h6 font-weight-black"
       >
@@ -63,5 +64,7 @@ const computeColor = (val: number): string => {
         </v-list-item>
       </v-list>
     </template>
+
+    <v-alert title="Выберите город" v-else color="warning" />
   </v-card>
 </template>
