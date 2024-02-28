@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
-const order = ref(false);
 </script>
 
 <template>
   <v-layout>
     <slot name="header"></slot>
 
-    <v-main>
+    <v-main class="ma-10">
       <slot></slot>
     </v-main>
   </v-layout>
