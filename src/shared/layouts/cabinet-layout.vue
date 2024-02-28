@@ -5,7 +5,7 @@
   <v-layout>
     <slot name="header"></slot>
 
-    <v-main class="ma-10">
+    <v-main class="mt-10 mx-10 d-flex justify-center">
       <slot></slot>
     </v-main>
   </v-layout>

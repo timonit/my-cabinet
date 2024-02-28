@@ -11,6 +11,7 @@ import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import { mdi, aliases } from 'vuetify/iconsets/mdi';
+import { theme } from './shared/ui/theme';
 
 const vuetify = createVuetify({
   components,
@@ -21,6 +22,12 @@ const vuetify = createVuetify({
     sets: {
       mdi
     }
+  },
+  theme: {
+    themes: {
+      theme,
+    },
+    defaultTheme: 'theme'
   }
 });
 
