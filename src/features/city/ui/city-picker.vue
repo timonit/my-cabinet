@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { useCityStore } from '@/entities/city/model';
+import { setCurrentCompany } from '@/features/company';
 
 const cityStore = useCityStore();
+
+const selectCity = (items: any[]) => {
+  cityStore.select(items[0]);
+  setCurrentCompany(items[0]);
+}
 </script>
 
 <template>
@@ -9,7 +15,7 @@ const cityStore = useCityStore();
     {{ cityStore.selected?.name || 'City' }}
 
     <v-menu activator="parent">
-      <v-list @update:selected="(items: any[]) => cityStore.select(items[0])">
+      <v-list @update:selected="selectCity">
         <v-list-item
           v-for="item in cityStore.cities"
           :key="item.code"

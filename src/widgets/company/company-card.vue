@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { useCityStore } from '@/entities/city/model';
 import { useCompanyStore } from '@/entities/company/model';
 
 const companyStore = useCompanyStore();
+const cityStore = useCityStore();
 
 const color: {[p: string]: string} = {
   low: 'red',
@@ -20,11 +22,20 @@ const computeColor = (val: number): string => {
 
 <template>
   <v-card class="w-100 pa-2" style="max-width: 800px;" :loading="companyStore.fetching">
-    <template v-if="companyStore.company">
-      <v-card-title class="text-primary text-wrap my-sm-5 text-sm-h4 text-xs-h6 font-weight-black">{{ companyStore.company.name }}</v-card-title>
+    <template v-if="companyStore.company && !companyStore.fetching">
+      <v-card-title
+        class="text-primary text-wrap my-sm-3 text-sm-h4 text-xs-h6 font-weight-black"
+      >
+        {{ companyStore.company.name }}
+      </v-card-title>
+      
+      <v-card-item
+        :subtitle="`Текущая дата: ${companyStore.today.toLocaleString()}`"
+        :title="cityStore.selected?.name"
+      >
+      </v-card-item>
       
       <v-divider></v-divider>
-      <v-card-subtitle class="mt-5 text-wrap">Текущая дата: {{ companyStore.today.toLocaleString() }}</v-card-subtitle>
 
       <v-list lines="two">
         <v-list-item title="Количество товаров:">
