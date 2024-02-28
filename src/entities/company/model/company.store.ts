@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import type { Company, CompanyStatus } from './types';
 import { CompanyAPI } from '../api/company.api';
+import type { City } from '@/entities/city/model';
 
 export interface CompanyStoreState {
   company: Company | null;
@@ -9,6 +10,7 @@ export interface CompanyStoreState {
 
 export interface CompanyStoreActions {
   fetch(): Promise<void>;
+  setCompanyFromCity(code: City['code']): Promise<void>
 }
 
 export type CompantStoreGetters = {
@@ -52,6 +54,20 @@ export const useCompanyStore = defineStore<
       const api = new CompanyAPI();
       const data = await api.get<Company>();
       
+      this.$patch({
+        company: data,
+        fetching: false,
+      });
+    },
+
+    async setCompanyFromCity(code: City['code']) {
+      this.$state.fetching = true;
+
+      // имитация запроса компании по коду города
+      const api = new CompanyAPI();
+      const data = await api.get<Company>();
+      
+      // @ts-ignore
       this.$patch({
         company: data,
         fetching: false,
