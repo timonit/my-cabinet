@@ -1,4 +1,10 @@
-@import './base.css';
+:root {
+  --color-background: rgb(30,70,100);
+}
+
+body {
+  background: var(--color-background);
+}
 
 #app {
 }
