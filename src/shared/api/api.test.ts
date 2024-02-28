@@ -40,12 +40,11 @@ describe('API', () => {
   test('Fail requesting data', async () => {
     const body = { prop: 'data' };
     const status = 400;
-    fetchMock.get(url, { status, body});
-    
+    fetchMock.get(url, { status, body });
+
     try {
       await instance.get();
-
-    } catch(err: any) {
+    } catch (err: any) {
       expect(err).instanceOf(APIError);
       expect(err.status).toEqual(status);
     }

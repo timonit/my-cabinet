@@ -7,11 +7,11 @@ const props = defineProps<{
   value: number | string;
 }>();
 
-const color: { [p: string]: string; } = {
+const color: { [p: string]: string } = {
   low: 'red',
   medium: 'primary',
   high: 'green',
-  unknown: 'default',
+  unknown: 'default'
 };
 </script>
 

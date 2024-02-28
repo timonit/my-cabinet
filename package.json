@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "run-p type-check \"build-only {@}\" --",
+    "serve": "vite serve --host 0.0.0.0",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",

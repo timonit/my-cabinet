@@ -1,5 +1,3 @@
 import StatusList from './status-list.vue';
 
-export {
-  StatusList
-}
+export { StatusList };

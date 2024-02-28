@@ -17,9 +17,8 @@ const getCurrentDate = (): string => {
 </script>
 
 <template>
-  <v-card class="w-100 pa-2" style="max-width: 800px;" :loading="companyStore.fetching">
+  <v-card class="w-100 pa-2" style="max-width: 800px" :loading="companyStore.fetching">
     <template v-if="companyStore.company && !companyStore.fetching && cityStore.selected">
-
       <v-card-title class="text-primary text-wrap my-sm-3 text-sm-h4 text-xs-h6 font-weight-black">
         {{ companyStore.company.name }}
       </v-card-title>
@@ -29,7 +28,6 @@ const getCurrentDate = (): string => {
       <v-divider></v-divider>
 
       <StatusList />
-
     </template>
 
     <v-alert v-else title="Выберите город" color="warning" />
